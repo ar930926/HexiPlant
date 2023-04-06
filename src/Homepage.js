@@ -179,14 +179,14 @@ function Homepage() {
                           <button
                             className="red"
                             onClick={() => {
-                              window.location.href = `/eachUser/${i}`;
+                              window.location.href = `/EachPlant/${i}`;
                             }}
                           >
                             Show Details
                           </button>
                         </div>
                       ) : (
-                        <div className="col text-start" href={`/eachUser/${i}`}>
+                        <div className="col text-start" href={`/EachPlant/${i}`}>
                           <button
                             className="green"
                             onClick={() => {
