@@ -188,7 +188,7 @@ function Homepage() {
                           <button
                             className="green"
                             onClick={() => {
-                              window.location.href = `/eachUser/${element.id}`;
+                              window.location.href = `/eachUser/${element.id}?temperature=${temp}&humidity=${hum}`;
                             }}
                           >
                             Show Details
