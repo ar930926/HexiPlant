@@ -37,8 +37,8 @@
   --bs-accordion-btn-bg: var(--bs-danger-bg-subtle) !important;
   --bs-accordion-active-bg: var(--bs-danger-bg-subtle) !important;
   --bs-accordion-btn-focus-border-color: #fe8686 !important;
-    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(253, 13, 13, 0.25) !important;
-    --bs-accordion-active-color: var(--bs-body-color) !important;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(253, 13, 13, 0.25) !important;
+  --bs-accordion-active-color: var(--bs-body-color) !important;
 }
 
 .good {
@@ -51,4 +51,49 @@
 
 .btn-block {
   width: 100%;
+}
+
+/* Button with white background and red accordion header */
+button.red {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button.red:hover {
+  background-color: red;
+  color: white;
+}
+
+/* Button with white background and green accordion header */
+button.green {
+  background-color: white;
+  color: green;
+  border: 1px solid green;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button.green:hover {
+  background-color: green;
+  color: white;
+}
+
+button.red button.green {
+  margin-left: 90%;
+}
+
+.col {
+  padding-top: 5px;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+}
+
+.good {
+  color: green;
 }
