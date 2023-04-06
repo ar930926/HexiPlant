@@ -70,18 +70,16 @@ function Homepage() {
         <h1>HexiPlant</h1>
       </header>
       <main className="container">
+        <div className="text-start preset mb-3">
+          <h5 className="mb-3">Master Controls</h5>
+          <h6>Temperature: {temp}°C</h6>
+          <Form.Range value={temp} min={0} max={50} onChange={handleTempChange} />
+          <h6>Humidity: {hum}%</h6>
+          <React.Fragment>
+            <Form.Range value={hum} min={0} max={100} onChange={handleHumChange} />
+          </React.Fragment>
+        </div>
         <div className="container mb-3">
-          <div className="row">
-            <div className="col text-center">
-              <h2>Preset</h2>
-            </div>
-            <h3>Temperature: {temp}°C</h3>
-            <Form.Range value={temp} min={0} max={50} onChange={handleTempChange} />
-            <h3>Humidity: {hum}%</h3>
-            <React.Fragment>
-              <Form.Range value={hum} min={0} max={100} onChange={handleHumChange} />
-            </React.Fragment>
-          </div>
           <div className="row">
             <div className="col text-start">
               <b>Current Temp:</b>
@@ -179,7 +177,7 @@ function Homepage() {
                           <button
                             className="red"
                             onClick={() => {
-                              window.location.href = `/eachPlant/${i}`;
+                              window.location.href = `/eachUser/${element.id}`;
                             }}
                           >
                             Show Details
@@ -190,7 +188,7 @@ function Homepage() {
                           <button
                             className="green"
                             onClick={() => {
-                              window.location.href = `/eachUser/${i}`;
+                              window.location.href = `/eachUser/${element.id}`;
                             }}
                           >
                             Show Details
@@ -210,7 +208,7 @@ function Homepage() {
       </main>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>New Plant</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

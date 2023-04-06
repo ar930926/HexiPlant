@@ -85,15 +85,21 @@ function EachPlant() {
   // display the plant information
   return (
     <div>
-      <header className="App-header container mb-3">
-        <h1>{currentPlant.name}</h1>
+      <header className="App-header container mb-3 flex-row">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"
+         className="mx-2" onClick={() => {
+                              window.location.href = `/`;
+                            }}>
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+        <h1 className="mx-2">{currentPlant.name}</h1>
       </header>
       <Container>
         <Row>
-          <Col className="text-center">
+          <Col>
             <img
               src={currentPlant.image}
-              style={{ maxHeight: "50vw", maxWidth: "25vh" }}
+              className="plant-img mb-3"
               alt="Plant image"
             />
           </Col>

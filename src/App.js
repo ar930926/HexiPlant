@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" index element={<Homepage />} />
-        <Route path="/eachPlant/:index" element={<EachPlant />} />
+        <Route path="/eachUser/:index" element={<EachPlant />} />
       </Routes>
     </BrowserRouter>
   );
