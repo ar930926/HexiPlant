@@ -177,7 +177,7 @@ function Homepage() {
                       humStatus == "Too Moist" ? (
                         <div className="col text-start">
                           <button
-                            className="green"
+                            className="red"
                             onClick={() => {
                               window.location.href = `/eachUser/${i}`;
                             }}
@@ -188,7 +188,7 @@ function Homepage() {
                       ) : (
                         <div className="col text-start" href={`/eachUser/${i}`}>
                           <button
-                            className="red"
+                            className="green"
                             onClick={() => {
                               window.location.href = `/eachUser/${i}`;
                             }}
