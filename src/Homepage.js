@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
-const plantArray = [
+var plantArray = [
   {
     id: 1,
     name: "Aloe Vera",
@@ -11,6 +11,7 @@ const plantArray = [
     minHum: 40,
     maxHum: 40,
     toxic: true,
+    enabled: true,
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const plantArray = [
     minHum: 0,
     maxHum: 100,
     toxic: true,
+    enabled: true,
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const plantArray = [
     minHum: 40,
     maxHum: 100,
     toxic: true,
+    enabled: true,
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const plantArray = [
     minHum: 40,
     maxHum: 100,
     toxic: false,
+    enabled: true,
   },
 ];
 
@@ -51,17 +55,31 @@ function Homepage() {
   const [show, setShow] = useState(false);
   const [temp, setTemp] = useState(28);
   const [hum, setHum] = useState(20);
+  const [toggle, setToggle] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   function handleHumChange(value) {
-    console.log(value.target.value);
     setHum(value.target.value);
   }
 
   function handleTempChange(value) {
     setTemp(value.target.value);
+  }
+
+  function handleToggleChange() {
+    setToggle(!toggle);
+  }
+
+  function disable(value) {
+    plantArray[value - 1].enabled = !plantArray[value - 1].enabled
+  }
+
+  function deletePlant(value) {
+    console.log(plantArray)
+    plantArray.splice([value - 1], 1)
+    console.log(plantArray)
   }
 
   return (
@@ -94,8 +112,10 @@ function Homepage() {
           </div>
         </div>
         {plantArray.map((element) => {
+          console.log(plantArray)
           i++;
           let tempStatus, humStatus, toxStatus, status;
+          console.log("1", status, element.name)
 
           // Set Temp Status
           if (element.minTemp > temp) {
@@ -125,8 +145,14 @@ function Homepage() {
           // Set General Status
           if (humStatus !== "Perfect" || tempStatus !== "Perfect" || !toxStatus) {
             status = { emoji: "😞", color: "danger" };
-          } else {
+          } 
+          else {
             status = { emoji: "😄", color: "good" };
+          }
+          console.log("2", status, element.name)
+
+          if (element.enabled == false) {
+            status = { emoji: "⚪", color: "grey" };
           }
 
           return (
@@ -150,24 +176,34 @@ function Homepage() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    <div className="row">
-                      <div className="col text-start">
-                        <b>Temperature Status:</b>
+                    <div>
+                      {element.enabled ? (
+                        <div>
+                          <div className="row">
+                          <div className="col text-start">
+                            <b>Temperature Status:</b>
+                          </div>
+                          <div className="col text-end">{tempStatus}</div>
+                        </div>
+                        <div className="row">
+                          <div className="col text-start">
+                            <b>Humidity Status:</b>
+                          </div>
+                          <div className="col text-end">{humStatus}</div>
+                        </div>
+                        <div className="row">
+                          <div className="col text-start">
+                            <b>Toxic to Pets:</b>
+                          </div>
+                          <div className="col text-end">{toxStatus}</div>
+                        </div>
                       </div>
-                      <div className="col text-end">{tempStatus}</div>
+                      ) : (
+                        <div></div>
+                      ) }
+                    
                     </div>
-                    <div className="row">
-                      <div className="col text-start">
-                        <b>Humidity Status:</b>
-                      </div>
-                      <div className="col text-end">{humStatus}</div>
-                    </div>
-                    <div className="row">
-                      <div className="col text-start">
-                        <b>Toxic to Pets:</b>
-                      </div>
-                      <div className="col text-end">{toxStatus}</div>
-                    </div>
+                    
                     <div className="row">
                       {tempStatus == "Too Hot" ||
                       tempStatus == "Too Dry" ||
@@ -175,7 +211,7 @@ function Homepage() {
                       humStatus == "Too Moist" ? (
                         <div className="col text-start">
                           <button
-                            className="red"
+                            className="red mt-3"
                             onClick={() => {
                               window.location.href = `/eachUser/${element.id}`;
                             }}
@@ -186,7 +222,7 @@ function Homepage() {
                       ) : (
                         <div className="col text-start" href={`/eachPlant/${i}`}>
                           <button
-                            className="green"
+                            className="green mt-3"
                             onClick={() => {
                               window.location.href = `/eachUser/${element.id}?temperature=${temp}&humidity=${hum}`;
                             }}
@@ -195,6 +231,31 @@ function Homepage() {
                           </button>
                         </div>
                       )}
+                      <div className="col mt-3 text-start">
+                        {element.enabled ? (
+                          <button
+                          className="red"
+                          onClick={() => {disable(element.id); handleToggleChange()}}
+                            >
+                              Disable
+                          </button>
+                        ) : (
+                        <button
+                          className="green"
+                          onClick={() => {disable(element.id); handleToggleChange()}}
+                        >
+                            Enable
+                        </button>
+                      )}  
+                      </div>
+                      <div className="col text-start">
+                      <button
+                          className="red mt-3"
+                          onClick={() => {deletePlant(element.id); handleToggleChange()}}
+                        >
+                            Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

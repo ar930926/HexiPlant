@@ -60,6 +60,7 @@ button.red {
   border: 1px solid red;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
 button.red:hover {
@@ -74,6 +75,7 @@ button.green {
   border: 1px solid green;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
 button.green:hover {
